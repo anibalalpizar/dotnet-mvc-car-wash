@@ -1,6 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.Diagnostics.Eventing.Reader;
-using System.Threading.Tasks;
 
 namespace dotnet_mvc_car_wash.Models
 {
