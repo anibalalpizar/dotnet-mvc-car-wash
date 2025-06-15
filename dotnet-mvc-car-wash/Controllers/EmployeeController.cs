@@ -1,5 +1,4 @@
 ﻿using dotnet_mvc_car_wash.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace dotnet_mvc_car_wash.Controllers
@@ -191,34 +190,6 @@ namespace dotnet_mvc_car_wash.Controllers
                 success = false;
             }
             return success;
-        }
-
-        // GET: EmployeeController/Search
-        public ActionResult Search(string searchTerm)
-        {
-            var foundEmployees = SearchEmployees(searchTerm);
-            ViewBag.SearchTerm = searchTerm;
-            return View("Index", foundEmployees);
-        }
-
-        private List<Employee> SearchEmployees(string searchTerm)
-        {
-            List<Employee> foundEmployees = new List<Employee>();
-            if (string.IsNullOrEmpty(searchTerm))
-            {
-                foundEmployees = employees.ToList();
-            }
-            else
-            {
-                foreach (var employee in employees)
-                {
-                    if (employee.Id.Contains(searchTerm, StringComparison.OrdinalIgnoreCase))
-                    {
-                        foundEmployees.Add(employee);
-                    }
-                }
-            }
-            return foundEmployees;
-        }
+        }         
     }
 }
