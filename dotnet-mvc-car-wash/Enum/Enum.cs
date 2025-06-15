@@ -21,10 +21,10 @@ public enum WashType
     [Display(Name = "Deluxe")]
     Deluxe = 20000,
     [Display(Name = "La Joya")]
-    LaJoya = 0 
+    LaJoya = 0
 }
 
-public enum WashStatus
+    public enum WashStatus
 {
     [Display(Name = "In Process")]
     InProcess,
