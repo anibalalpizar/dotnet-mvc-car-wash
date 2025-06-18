@@ -1,14 +1,45 @@
 ﻿@model IEnumerable<dotnet_mvc_car_wash.Models.Employee>
-
 @{
     ViewData["Title"] = "Index";
 }
 
 <h1>Index</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+<!-- Sección de búsqueda -->
+<div class="mb-3">
+    <form method="get" asp-action="Index" class="d-flex">
+        <input type="text" name="searchTerm" value="@ViewBag.SearchTerm"
+               class="form-control me-2" placeholder="Buscar empleado..."
+               style="max-width: 300px;">
+        <button class="btn btn-primary me-2" type="submit">Buscar</button>
+        @if (!string.IsNullOrEmpty(ViewBag.SearchTerm))
+        {
+            <a asp-action="Index" class="btn btn-secondary me-2">Limpiar</a>
+        }
+        <a asp-action="Create" class="btn btn-success">Create New</a>
+    </form>
+</div>
+
+<!-- Información de resultados -->
+@if (!string.IsNullOrEmpty(ViewBag.SearchTerm))
+{
+    <div class="alert alert-info">
+        Se encontraron @ViewBag.FilteredCount de @ViewBag.EmployeeCount empleados
+        que coinciden con "<strong>@ViewBag.SearchTerm</strong>"
+    </div>
+}
+
+<!-- Mensaje cuando no hay resultados -->
+@if (Model != null && !Model.Any() && !string.IsNullOrEmpty(ViewBag.SearchTerm))
+{
+    <div class="alert alert-warning">
+        <strong>No se encontraron coincidencias</strong><br>
+        No se encontraron empleados que coincidan con el término "<strong>@ViewBag.SearchTerm</strong>"
+        <br><a asp-action="Index" class="btn btn-primary btn-sm mt-2">Ver todos los empleados</a>
+    </div>
+}
+
+<!-- Tabla de empleados -->
 <table class="table">
     <thead>
         <tr>
@@ -38,7 +69,7 @@
     </thead>
     <tbody>
 @foreach (var item in Model) {
-        <tr>
+            <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Id)
             </td>
@@ -60,12 +91,12 @@
             <td>
                 @Html.DisplayFor(modelItem => item.SeveranceAmount)
             </td>
-            <td>
+                <td>
                 @Html.ActionLink("Edit", "Edit", new {  id=item.Id  }) |
                 @Html.ActionLink("Details", "Details", new {  id=item.Id  }) |
                 @Html.ActionLink("Delete", "Delete", new {  id=item.Id  })
-            </td>
-        </tr>
-}
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
