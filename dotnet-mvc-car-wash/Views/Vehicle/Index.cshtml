@@ -1,0 +1,71 @@
+﻿@model IEnumerable<dotnet_mvc_car_wash.Models.Vehicle>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.LicensePlate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Brand)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Model)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Traction)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Color)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastServiceDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HasNanoCeramicTreatment)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.LicensePlate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Brand)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Model)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Traction)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Color)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastServiceDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HasNanoCeramicTreatment)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new {  id=item.LicensePlate  }) |
+                @Html.ActionLink("Details", "Details", new {  id=item.LicensePlate }) |
+                @Html.ActionLink("Delete", "Delete", new {  id=item.LicensePlate  })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
