@@ -9,9 +9,29 @@ namespace dotnet_mvc_car_wash.Controllers
         private static List<Employee> employees = new List<Employee>();
 
         // GET: EmployeeController
-        public ActionResult Index()
+        public ActionResult Index(string searchTerm)
         {
-            return View(employees);
+            var filteredEmployees = employees;
+
+            if (!string.IsNullOrEmpty(searchTerm))
+            {
+                // Buscar por aproximación en ID, fechas y campos numéricos convertidos a string
+                filteredEmployees = employees.Where(e =>
+                    e.Id.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) ||
+                    e.BirthDate.ToString("dd/MM/yyyy").Contains(searchTerm) ||
+                    e.HireDate.ToString("dd/MM/yyyy").Contains(searchTerm) ||
+                    e.DailySalary.ToString().Contains(searchTerm) ||
+                    e.AccumulatedVacationDays.ToString().Contains(searchTerm) ||
+                    (e.TerminationDate?.ToString("dd/MM/yyyy")?.Contains(searchTerm) ?? false) ||
+                    (e.SeveranceAmount?.ToString()?.Contains(searchTerm) ?? false)
+                ).ToList();
+            }
+
+            ViewBag.SearchTerm = searchTerm;
+            ViewBag.EmployeeCount = employees.Count;
+            ViewBag.FilteredCount = filteredEmployees.Count;
+
+            return View(filteredEmployees);
         }
 
         // GET: EmployeeController/Details/5
@@ -45,7 +65,6 @@ namespace dotnet_mvc_car_wash.Controllers
                     if (existingEmployee == null)
                     {
                         employees.Add(employee);
-                        TempData["SuccessMessage"] = "Employee created successfully.";
                         return RedirectToAction(nameof(Index));
                     }
                     else
@@ -85,7 +104,6 @@ namespace dotnet_mvc_car_wash.Controllers
                     bool success = UpdateEmployee(employee);
                     if (success)
                     {
-                        TempData["SuccessMessage"] = "Employee updated successfully.";
                         return RedirectToAction(nameof(Index));
                     }
                     else
@@ -120,14 +138,7 @@ namespace dotnet_mvc_car_wash.Controllers
             try
             {
                 bool success = DeleteEmployee(id);
-                if (success)
-                {
-                    TempData["SuccessMessage"] = "Employee deleted successfully.";
-                }
-                else
-                {
-                    TempData["ErrorMessage"] = "Could not delete employee.";
-                }
+
                 return RedirectToAction(nameof(Index));
             }
             catch (Exception ex)
