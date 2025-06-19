@@ -141,9 +141,8 @@ namespace dotnet_mvc_car_wash.Controllers
 
                 return RedirectToAction(nameof(Index));
             }
-            catch (Exception ex)
+            catch 
             {
-                TempData["ErrorMessage"] = "Error deleting employee: " + ex.Message;
                 return RedirectToAction(nameof(Index));
             }
         }
