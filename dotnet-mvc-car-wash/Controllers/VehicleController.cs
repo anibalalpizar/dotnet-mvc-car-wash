@@ -13,6 +13,7 @@ namespace dotnet_mvc_car_wash.Controllers
         public ActionResult Index(string searchTerm)
         {
             var filteredVehicles = vehicles;
+
             if (!string.IsNullOrEmpty(searchTerm))
             {
                 // Filter vehicles based on search term
