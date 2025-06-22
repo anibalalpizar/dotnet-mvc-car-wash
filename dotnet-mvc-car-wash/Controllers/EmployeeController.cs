@@ -15,7 +15,6 @@ namespace dotnet_mvc_car_wash.Controllers
 
             if (!string.IsNullOrEmpty(searchTerm))
             {
-                // Buscar por aproximación en ID, fechas y campos numéricos convertidos a string
                 filteredEmployees = employees.Where(e =>
                     e.Id.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) ||
                     e.BirthDate.ToString("dd/MM/yyyy").Contains(searchTerm) ||
@@ -58,6 +57,30 @@ namespace dotnet_mvc_car_wash.Controllers
         {
             try
             {
+                if (employee.BirthDate >= employee.HireDate)
+                {
+                    ModelState.AddModelError("BirthDate", "The date of birth must be prior to the date of hiring.");
+                    ModelState.AddModelError("HireDate", "The date of hiring must be after the date of birth.");
+                }
+
+                var ageAtHire = employee.HireDate.Year - employee.BirthDate.Year;
+                if (employee.BirthDate.Date > employee.HireDate.AddYears(-ageAtHire)) ageAtHire--;
+
+                if (ageAtHire < 18)
+                {
+                    ModelState.AddModelError("BirthDate", "The employee must be at least 18 years old at the time of hiring.");
+                }
+
+                if (employee.TerminationDate.HasValue && employee.TerminationDate.Value <= employee.HireDate)
+                {
+                    ModelState.AddModelError("TerminationDate", "The termination date must be after the hire date.");
+                }
+
+                if (employee.HireDate > DateTime.Now)
+                {
+                    ModelState.AddModelError("HireDate", "The hiring date cannot be in the future.");
+                }
+
                 if (ModelState.IsValid)
                 {
                     // Check if employee with same ID already exists
@@ -69,7 +92,7 @@ namespace dotnet_mvc_car_wash.Controllers
                     }
                     else
                     {
-                        ModelState.AddModelError("", "An employee with that ID already exists.");
+                        ModelState.AddModelError("Id", "An employee with that ID already exists.");
                     }
                 }
             }
