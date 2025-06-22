@@ -63,7 +63,7 @@ namespace dotnet_mvc_car_wash.Controllers
                 // Validación especial para La Joya
                 if (lavado.TipoLavado == TipoLavado.LaJoya && (!lavado.PrecioAConvenir.HasValue || lavado.PrecioAConvenir <= 0))
                 {
-                    ModelState.AddModelError("PrecioAConvenir", "Debe especificar un precio para el lavado 'La Joya'.");
+                    ModelState.AddModelError("PrecioAConvenir", "You must specify a price for the 'La Joya' wash.");
                 }
 
                 if (ModelState.IsValid)
@@ -71,10 +71,8 @@ namespace dotnet_mvc_car_wash.Controllers
                     var existingLavado = GetLavadoById(lavado.IdLavado);
                     if (existingLavado == null)
                     {
-                        // Calcular precios automáticamente
                         lavado.CalcularPrecios();
 
-                        // Asegurar que la fecha de creación esté establecida
                         if (lavado.FechaCreacion == default(DateTime))
                         {
                             lavado.FechaCreacion = DateTime.Now;
@@ -85,13 +83,13 @@ namespace dotnet_mvc_car_wash.Controllers
                     }
                     else
                     {
-                        ModelState.AddModelError("", "Ya existe un lavado con ese ID.");
+                        ModelState.AddModelError("", "A wash with that ID already exists.");
                     }
                 }
             }
             catch (Exception ex)
             {
-                ModelState.AddModelError("", "Ocurrió un error al crear el lavado: " + ex.Message);
+                ModelState.AddModelError("", "An error occurred while creating the wash: " + ex.Message);
             }
             return View(lavado);
         }
@@ -117,14 +115,13 @@ namespace dotnet_mvc_car_wash.Controllers
                 // Validación especial para La Joya
                 if (lavado.TipoLavado == TipoLavado.LaJoya && (!lavado.PrecioAConvenir.HasValue || lavado.PrecioAConvenir <= 0))
                 {
-                    ModelState.AddModelError("PrecioAConvenir", "Debe especificar un precio para el lavado 'La Joya'.");
+                    ModelState.AddModelError("PrecioAConvenir", "You must specify a price for the 'La Joya' wash.");
                 }
 
                 if (ModelState.IsValid)
                 {
                     lavado.IdLavado = id; // Ensure the ID remains the same
 
-                    // Recalcular precios en caso de que se haya cambiado el tipo de lavado
                     lavado.CalcularPrecios();
 
                     bool success = UpdateLavado(lavado);
@@ -134,13 +131,13 @@ namespace dotnet_mvc_car_wash.Controllers
                     }
                     else
                     {
-                        ModelState.AddModelError("", "Ocurrió un error al actualizar el lavado.");
+                        ModelState.AddModelError("", "An error occurred while creating the wash.");
                     }
                 }
             }
             catch (Exception ex)
             {
-                ModelState.AddModelError("", "Ocurrió un error al actualizar el lavado: " + ex.Message);
+                ModelState.AddModelError("", "An error occurred while creating the wash: " + ex.Message);
             }
             return View(lavado);
         }
@@ -170,23 +167,7 @@ namespace dotnet_mvc_car_wash.Controllers
             {
                 return RedirectToAction(nameof(Index));
             }
-        }
-
-        // Método para obtener información del precio según el tipo de lavado (para AJAX si se necesita)
-        [HttpGet]
-        public JsonResult GetPrecioInfo(TipoLavado tipoLavado)
-        {
-            var tempLavado = new Lavado { TipoLavado = tipoLavado };
-            tempLavado.CalcularPrecios();
-
-            return Json(new
-            {
-                precioBase = tempLavado.PrecioBase,
-                iva = tempLavado.IVA,
-                precioTotal = tempLavado.PrecioTotal,
-                descripcion = tempLavado.GetTipoLavadoDescripcion()
-            });
-        }
+        }    
 
         private Lavado GetLavadoById(string id)
         {
@@ -211,7 +192,6 @@ namespace dotnet_mvc_car_wash.Controllers
                 {
                     if (lavados[i].IdLavado == updatedLavado.IdLavado)
                     {
-                        // Mantener la fecha de creación original
                         updatedLavado.FechaCreacion = lavados[i].FechaCreacion;
                         lavados[i] = updatedLavado;
                         success = true;
