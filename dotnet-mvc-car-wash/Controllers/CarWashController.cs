@@ -60,7 +60,6 @@ namespace dotnet_mvc_car_wash.Controllers
         {
             try
             {
-                // Validación especial para La Joya
                 if (lavado.TipoLavado == TipoLavado.LaJoya && (!lavado.PrecioAConvenir.HasValue || lavado.PrecioAConvenir <= 0))
                 {
                     ModelState.AddModelError("PrecioAConvenir", "You must specify a price for the 'La Joya' wash.");
@@ -112,7 +111,6 @@ namespace dotnet_mvc_car_wash.Controllers
         {
             try
             {
-                // Validación especial para La Joya
                 if (lavado.TipoLavado == TipoLavado.LaJoya && (!lavado.PrecioAConvenir.HasValue || lavado.PrecioAConvenir <= 0))
                 {
                     ModelState.AddModelError("PrecioAConvenir", "You must specify a price for the 'La Joya' wash.");
