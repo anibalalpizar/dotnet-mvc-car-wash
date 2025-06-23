@@ -1,4 +1,5 @@
-﻿<!-- Views/Lavado/Create.cshtml -->
+﻿@using dotnet_mvc_car_wash.Models.Enums
+<!-- Views/Lavado/Create.cshtml -->
 @model dotnet_mvc_car_wash.Models.Lavado
 
 @{
@@ -36,7 +37,7 @@
 
     <div>
         <label asp-for="TipoLavado"></label>
-        <select asp-for="TipoLavado" asp-items="Html.GetEnumSelectList<dotnet_mvc_car_wash.Models.TipoLavado>()" id="tipoLavadoSelect">
+        <select asp-for="TipoLavado" asp-items="Html.GetEnumSelectList<TipoLavado>()">
             <option value="">-- Seleccione un tipo --</option>
         </select>
         <span asp-validation-for="TipoLavado"></span>
@@ -51,7 +52,7 @@
 
     <div>
         <label asp-for="EstadoLavado"></label>
-        <select asp-for="EstadoLavado" asp-items="Html.GetEnumSelectList<dotnet_mvc_car_wash.Models.EstadoLavado>()">
+        <select asp-for="EstadoLavado" asp-items="Html.GetEnumSelectList<EstadoLavado>()">
             <option value="">-- Seleccione un estado --</option>
         </select>
         <span asp-validation-for="EstadoLavado"></span>
@@ -66,7 +67,7 @@
     <div>
         <p><strong>Precios por tipo de lavado:</strong></p>
         <ul>
-            @foreach (var tipo in Enum.GetValues<dotnet_mvc_car_wash.Models.TipoLavado>())
+            @foreach (var tipo in Enum.GetValues<TipoLavado>())
             {
                 var tempLavado = new dotnet_mvc_car_wash.Models.Lavado { TipoLavado = tipo };
                 tempLavado.CalcularPrecios();
