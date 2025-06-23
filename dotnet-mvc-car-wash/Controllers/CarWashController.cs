@@ -1,4 +1,5 @@
 ﻿using dotnet_mvc_car_wash.Models;
+using dotnet_mvc_car_wash.Models.Enums;
 using Microsoft.AspNetCore.Mvc;
 
 namespace dotnet_mvc_car_wash.Controllers
@@ -165,7 +166,7 @@ namespace dotnet_mvc_car_wash.Controllers
             {
                 return RedirectToAction(nameof(Index));
             }
-        }    
+        }
 
         private Lavado GetLavadoById(string id)
         {
