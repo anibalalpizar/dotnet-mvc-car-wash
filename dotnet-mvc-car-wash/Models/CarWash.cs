@@ -1,37 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using dotnet_mvc_car_wash.Models.Enums;
+using System.ComponentModel.DataAnnotations;
 
 namespace dotnet_mvc_car_wash.Models
 {
-    // Enum para preferencias de lavado del cliente
-    public enum WashPreference
-    {
-        Semanal,
-        Quincenal,
-        Mensual,
-        Otro
-    }
-
-    // Enum para tipos de lavado
-    public enum TipoLavado
-    {
-        [Display(Name = "Básico")]
-        Basico,
-        Premium,
-        Deluxe,
-        [Display(Name = "La Joya")]
-        LaJoya
-    }
-
-    // Enum para estado del lavado
-    public enum EstadoLavado
-    {
-        [Display(Name = "En Proceso")]
-        EnProceso,
-        Facturado,
-        Agendado
-    }
-
-    // Modelo para Lavado
     public class Lavado
     {
         [Required]
@@ -76,7 +47,6 @@ namespace dotnet_mvc_car_wash.Models
         [Display(Name = "Observaciones")]
         public string? Observaciones { get; set; }
 
-        // Constructor para inicializar valores por defecto
         public Lavado()
         {
             FechaCreacion = DateTime.Now;
@@ -87,7 +57,6 @@ namespace dotnet_mvc_car_wash.Models
         {
             if (TipoLavado == TipoLavado.LaJoya)
             {
-                // Para La Joya, usar el precio a convenir si se ha especificado
                 PrecioBase = PrecioAConvenir ?? 0m;
             }
             else
