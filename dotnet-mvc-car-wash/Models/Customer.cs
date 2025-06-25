@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using dotnet_mvc_car_wash.Models.Enums;
+using System.ComponentModel.DataAnnotations;
 
 namespace dotnet_mvc_car_wash.Models
 {
