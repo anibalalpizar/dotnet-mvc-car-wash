@@ -6,45 +6,45 @@ namespace dotnet_mvc_car_wash.Models
     public class Lavado
     {
         [Required]
-        [Display(Name = "ID de Lavado")]
+        [Display(Name = "Car Wash ID")]
         public string IdLavado { get; set; }
 
         [Required]
-        [Display(Name = "Placa del Vehículo")]
+        [Display(Name = "Vehicle License Plate")]
         public string PlacaVehiculo { get; set; }
 
         [Required]
-        [Display(Name = "ID del Cliente")]
+        [Display(Name = "Client ID")]
         public string IdCliente { get; set; }
 
         [Required]
-        [Display(Name = "ID del Empleado")]
+        [Display(Name = "Employee ID")]
         public string IdEmpleado { get; set; }
 
         [Required]
-        [Display(Name = "Tipo de Lavado")]
+        [Display(Name = "Wash Type")]
         public TipoLavado TipoLavado { get; set; }
 
-        [Display(Name = "Precio Base")]
+        [Display(Name = "Base Price")]
         public decimal PrecioBase { get; set; }
 
-        [Display(Name = "Precio A Convenir")]
+        [Display(Name = "Price to Agree")]
         public decimal? PrecioAConvenir { get; set; }
 
         [Display(Name = "IVA (13%)")]
         public decimal IVA { get; set; }
 
-        [Display(Name = "Precio Total")]
+        [Display(Name = "Total Price")]
         public decimal PrecioTotal { get; set; }
 
         [Required]
-        [Display(Name = "Estado del Lavado")]
+        [Display(Name = "Wash Status")]
         public EstadoLavado EstadoLavado { get; set; }
 
-        [Display(Name = "Fecha de Creación")]
+        [Display(Name = "Creation Date")]
         public DateTime FechaCreacion { get; set; }
 
-        [Display(Name = "Observaciones")]
+        [Display(Name = "Observations")]
         public string? Observaciones { get; set; }
 
         public Lavado()
@@ -53,7 +53,7 @@ namespace dotnet_mvc_car_wash.Models
             EstadoLavado = EstadoLavado.Agendado;
         }
 
-        public void CalcularPrecios()
+        public void CalculatePrices()
         {
             if (TipoLavado == TipoLavado.LaJoya)
             {
