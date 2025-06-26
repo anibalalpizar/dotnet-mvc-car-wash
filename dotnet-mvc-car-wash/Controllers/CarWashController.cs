@@ -71,7 +71,7 @@ namespace dotnet_mvc_car_wash.Controllers
                     var existingLavado = GetLavadoById(lavado.IdLavado);
                     if (existingLavado == null)
                     {
-                        lavado.CalcularPrecios();
+                        lavado.CalculatePrices();
 
                         if (lavado.FechaCreacion == default(DateTime))
                         {
@@ -121,7 +121,7 @@ namespace dotnet_mvc_car_wash.Controllers
                 {
                     lavado.IdLavado = id; // Ensure the ID remains the same
 
-                    lavado.CalcularPrecios();
+                    lavado.CalculatePrices();
 
                     bool success = UpdateLavado(lavado);
                     if (success)
