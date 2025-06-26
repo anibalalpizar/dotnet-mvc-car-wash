@@ -84,7 +84,7 @@
             @foreach (var tipo in Enum.GetValues<TipoLavado>())
             {
                 var tempLavado = new dotnet_mvc_car_wash.Models.Lavado { TipoLavado = tipo };
-                tempLavado.CalcularPrecios();
+                tempLavado.CalculatePrices();
                 <li>
                     <strong>@tipo:</strong>
                     @if (tempLavado.PrecioBase > 0)
