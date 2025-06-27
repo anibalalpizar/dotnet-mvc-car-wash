@@ -1,6 +1,6 @@
 ﻿@using dotnet_mvc_car_wash.Models.Enums
 <!-- Views/Lavado/Create.cshtml -->
-@model dotnet_mvc_car_wash.Models.Lavado
+@model dotnet_mvc_car_wash.Models.CarWash
 
 @{
     ViewData["Title"] = "Crear Lavado";
@@ -69,7 +69,7 @@
         <ul>
             @foreach (var tipo in Enum.GetValues<TipoLavado>())
             {
-                var tempLavado = new dotnet_mvc_car_wash.Models.Lavado { TipoLavado = tipo };
+                var tempLavado = new dotnet_mvc_car_wash.Models.CarWash { TipoLavado = tipo };
                 tempLavado.CalculatePrices();
                 <li>
                     <strong>@tipo:</strong>
