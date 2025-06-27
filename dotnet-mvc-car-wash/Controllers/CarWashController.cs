@@ -40,7 +40,7 @@ namespace dotnet_mvc_car_wash.Controllers
         // GET: LavadoController/Details/5
         public ActionResult Details(string id)
         {
-            var lavado = GetLavadoById(id);
+            var lavado = GetCarWashById(id);
             if (lavado == null)
             {
                 return NotFound();
@@ -68,7 +68,7 @@ namespace dotnet_mvc_car_wash.Controllers
 
                 if (ModelState.IsValid)
                 {
-                    var existingLavado = GetLavadoById(carWash.IdLavado);
+                    var existingLavado = GetCarWashById(carWash.IdLavado);
                     if (existingLavado == null)
                     {
                         carWash.CalculatePrices();
@@ -97,7 +97,7 @@ namespace dotnet_mvc_car_wash.Controllers
         // GET: LavadoController/Edit/5
         public ActionResult Edit(string id)
         {
-            var lavado = GetLavadoById(id);
+            var lavado = GetCarWashById(id);
             if (lavado == null)
             {
                 return NotFound();
@@ -123,7 +123,7 @@ namespace dotnet_mvc_car_wash.Controllers
 
                     carWash.CalculatePrices();
 
-                    bool success = UpdateLavado(carWash);
+                    bool success = UpdateCarWash(carWash);
                     if (success)
                     {
                         return RedirectToAction(nameof(Index));
@@ -144,7 +144,7 @@ namespace dotnet_mvc_car_wash.Controllers
         // GET: LavadoController/Delete/5
         public ActionResult Delete(string id)
         {
-            var lavado = GetLavadoById(id);
+            var lavado = GetCarWashById(id);
             if (lavado == null)
             {
                 return NotFound();
@@ -159,7 +159,7 @@ namespace dotnet_mvc_car_wash.Controllers
         {
             try
             {
-                bool success = DeleteLavado(id);
+                bool success = DeleteCarWash(id);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -168,7 +168,7 @@ namespace dotnet_mvc_car_wash.Controllers
             }
         }
 
-        private CarWash GetLavadoById(string id)
+        private CarWash GetCarWashById(string id)
         {
             CarWash lavado = null;
             foreach (var lav in carWashs)
@@ -182,7 +182,7 @@ namespace dotnet_mvc_car_wash.Controllers
             return lavado;
         }
 
-        private bool UpdateLavado(CarWash updatedLavado)
+        private bool UpdateCarWash(CarWash updatedLavado)
         {
             bool success = false;
             try
@@ -205,7 +205,7 @@ namespace dotnet_mvc_car_wash.Controllers
             return success;
         }
 
-        private bool DeleteLavado(string id)
+        private bool DeleteCarWash(string id)
         {
             bool success = false;
             try
