@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace dotnet_mvc_car_wash.Models
 {
-    public class Lavado
+    public class CarWash
     {
         [Required]
         [Display(Name = "Car Wash ID")]
@@ -47,7 +47,7 @@ namespace dotnet_mvc_car_wash.Models
         [Display(Name = "Observations")]
         public string? Observaciones { get; set; }
 
-        public Lavado()
+        public CarWash()
         {
             FechaCreacion = DateTime.Now;
             EstadoLavado = EstadoLavado.Agendado;
