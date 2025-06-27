@@ -6,17 +6,17 @@ namespace dotnet_mvc_car_wash.Controllers
 {
     public class LavadoController : Controller
     {
-        private static List<Lavado> lavados = new List<Lavado>();
+        private static List<CarWash> carWashs = new List<CarWash>();
 
         // GET: LavadoController
         public ActionResult Index(string searchTerm)
         {
-            var filteredLavados = lavados;
+            var filteredLavados = carWashs;
 
             if (!string.IsNullOrEmpty(searchTerm))
             {
-                // Filter lavados based on search term
-                filteredLavados = lavados.Where(l =>
+                // Filter car wash based on search term
+                filteredLavados = carWashs.Where(l =>
                     l.IdLavado.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) ||
                     l.PlacaVehiculo.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) ||
                     l.IdCliente.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) ||
@@ -31,7 +31,7 @@ namespace dotnet_mvc_car_wash.Controllers
             }
 
             ViewBag.SearchTerm = searchTerm;
-            ViewBag.LavadoCount = lavados.Count;
+            ViewBag.LavadoCount = carWashs.Count;
             ViewBag.FilteredCount = filteredLavados.Count;
 
             return View(filteredLavados);
@@ -57,28 +57,28 @@ namespace dotnet_mvc_car_wash.Controllers
         // POST: LavadoController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Lavado lavado)
+        public ActionResult Create(CarWash carWash)
         {
             try
             {
-                if (lavado.TipoLavado == TipoLavado.LaJoya && (!lavado.PrecioAConvenir.HasValue || lavado.PrecioAConvenir <= 0))
+                if (carWash.TipoLavado == TipoLavado.LaJoya && (!carWash.PrecioAConvenir.HasValue || carWash.PrecioAConvenir <= 0))
                 {
                     ModelState.AddModelError("PrecioAConvenir", "You must specify a price for the 'La Joya' wash.");
                 }
 
                 if (ModelState.IsValid)
                 {
-                    var existingLavado = GetLavadoById(lavado.IdLavado);
+                    var existingLavado = GetLavadoById(carWash.IdLavado);
                     if (existingLavado == null)
                     {
-                        lavado.CalculatePrices();
+                        carWash.CalculatePrices();
 
-                        if (lavado.FechaCreacion == default(DateTime))
+                        if (carWash.FechaCreacion == default(DateTime))
                         {
-                            lavado.FechaCreacion = DateTime.Now;
+                            carWash.FechaCreacion = DateTime.Now;
                         }
 
-                        lavados.Add(lavado);
+                        carWashs.Add(carWash);
                         return RedirectToAction(nameof(Index));
                     }
                     else
@@ -91,7 +91,7 @@ namespace dotnet_mvc_car_wash.Controllers
             {
                 ModelState.AddModelError("", "An error occurred while creating the wash: " + ex.Message);
             }
-            return View(lavado);
+            return View(carWash);
         }
 
         // GET: LavadoController/Edit/5
@@ -108,22 +108,22 @@ namespace dotnet_mvc_car_wash.Controllers
         // POST: LavadoController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(string id, Lavado lavado)
+        public ActionResult Edit(string id, CarWash carWash)
         {
             try
             {
-                if (lavado.TipoLavado == TipoLavado.LaJoya && (!lavado.PrecioAConvenir.HasValue || lavado.PrecioAConvenir <= 0))
+                if (carWash.TipoLavado == TipoLavado.LaJoya && (!carWash.PrecioAConvenir.HasValue || carWash.PrecioAConvenir <= 0))
                 {
                     ModelState.AddModelError("PrecioAConvenir", "You must specify a price for the 'La Joya' wash.");
                 }
 
                 if (ModelState.IsValid)
                 {
-                    lavado.IdLavado = id; // Ensure the ID remains the same
+                    carWash.IdLavado = id; // Ensure the ID remains the same
 
-                    lavado.CalculatePrices();
+                    carWash.CalculatePrices();
 
-                    bool success = UpdateLavado(lavado);
+                    bool success = UpdateLavado(carWash);
                     if (success)
                     {
                         return RedirectToAction(nameof(Index));
@@ -138,7 +138,7 @@ namespace dotnet_mvc_car_wash.Controllers
             {
                 ModelState.AddModelError("", "An error occurred while creating the wash: " + ex.Message);
             }
-            return View(lavado);
+            return View(carWash);
         }
 
         // GET: LavadoController/Delete/5
@@ -168,10 +168,10 @@ namespace dotnet_mvc_car_wash.Controllers
             }
         }
 
-        private Lavado GetLavadoById(string id)
+        private CarWash GetLavadoById(string id)
         {
-            Lavado lavado = null;
-            foreach (var lav in lavados)
+            CarWash lavado = null;
+            foreach (var lav in carWashs)
             {
                 if (lav.IdLavado == id)
                 {
@@ -182,17 +182,17 @@ namespace dotnet_mvc_car_wash.Controllers
             return lavado;
         }
 
-        private bool UpdateLavado(Lavado updatedLavado)
+        private bool UpdateLavado(CarWash updatedLavado)
         {
             bool success = false;
             try
             {
-                for (int i = 0; i < lavados.Count; i++)
+                for (int i = 0; i < carWashs.Count; i++)
                 {
-                    if (lavados[i].IdLavado == updatedLavado.IdLavado)
+                    if (carWashs[i].IdLavado == updatedLavado.IdLavado)
                     {
-                        updatedLavado.FechaCreacion = lavados[i].FechaCreacion;
-                        lavados[i] = updatedLavado;
+                        updatedLavado.FechaCreacion = carWashs[i].FechaCreacion;
+                        carWashs[i] = updatedLavado;
                         success = true;
                         break;
                     }
@@ -210,10 +210,10 @@ namespace dotnet_mvc_car_wash.Controllers
             bool success = false;
             try
             {
-                Lavado lavadoToRemove = GetLavadoById(id);
+                CarWash lavadoToRemove = GetLavadoById(id);
                 if (lavadoToRemove != null)
                 {
-                    lavados.Remove(lavadoToRemove);
+                    carWashs.Remove(lavadoToRemove);
                     success = true;
                 }
             }
