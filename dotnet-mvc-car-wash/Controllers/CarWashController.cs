@@ -40,12 +40,12 @@ namespace dotnet_mvc_car_wash.Controllers
         // GET: LavadoController/Details/5
         public ActionResult Details(string id)
         {
-            var lavado = GetCarWashById(id);
-            if (lavado == null)
+            var carWash = GetCarWashById(id);
+            if (carWash == null)
             {
                 return NotFound();
             }
-            return View(lavado);
+            return View(carWash);
         }
 
         // GET: LavadoController/Create
@@ -97,12 +97,12 @@ namespace dotnet_mvc_car_wash.Controllers
         // GET: LavadoController/Edit/5
         public ActionResult Edit(string id)
         {
-            var lavado = GetCarWashById(id);
-            if (lavado == null)
+            var carWash = GetCarWashById(id);
+            if (carWash == null)
             {
                 return NotFound();
             }
-            return View(lavado);
+            return View(carWash);
         }
 
         // POST: LavadoController/Edit/5
@@ -170,29 +170,29 @@ namespace dotnet_mvc_car_wash.Controllers
 
         private CarWash GetCarWashById(string id)
         {
-            CarWash lavado = null;
+            CarWash carWash = null;
             foreach (var lav in carWashs)
             {
                 if (lav.IdLavado == id)
                 {
-                    lavado = lav;
+                    carWash = lav;
                     break;
                 }
             }
-            return lavado;
+            return carWash;
         }
 
-        private bool UpdateCarWash(CarWash updatedLavado)
+        private bool UpdateCarWash(CarWash updatedCarWash)
         {
             bool success = false;
             try
             {
                 for (int i = 0; i < carWashs.Count; i++)
                 {
-                    if (carWashs[i].IdLavado == updatedLavado.IdLavado)
+                    if (carWashs[i].IdLavado == updatedCarWash.IdLavado)
                     {
-                        updatedLavado.FechaCreacion = carWashs[i].FechaCreacion;
-                        carWashs[i] = updatedLavado;
+                        updatedCarWash.FechaCreacion = carWashs[i].FechaCreacion;
+                        carWashs[i] = updatedCarWash;
                         success = true;
                         break;
                     }
@@ -210,7 +210,7 @@ namespace dotnet_mvc_car_wash.Controllers
             bool success = false;
             try
             {
-                CarWash lavadoToRemove = GetLavadoById(id);
+                CarWash lavadoToRemove = GetCarWashById(id);
                 if (lavadoToRemove != null)
                 {
                     carWashs.Remove(lavadoToRemove);
