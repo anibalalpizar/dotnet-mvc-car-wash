@@ -17,7 +17,7 @@ namespace dotnet_mvc_car_wash.Controllers
             {
                 // Filter car wash based on search term
                 filteredLavados = carWashs.Where(l =>
-                    l.IdLavado.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) ||
+                    l.IdCarWash.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) ||
                     l.PlacaVehiculo.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) ||
                     l.IdCliente.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) ||
                     l.IdEmpleado.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) ||
@@ -68,7 +68,7 @@ namespace dotnet_mvc_car_wash.Controllers
 
                 if (ModelState.IsValid)
                 {
-                    var existingLavado = GetCarWashById(carWash.IdLavado);
+                    var existingLavado = GetCarWashById(carWash.IdCarWash);
                     if (existingLavado == null)
                     {
                         carWash.CalculatePrices();
@@ -119,7 +119,7 @@ namespace dotnet_mvc_car_wash.Controllers
 
                 if (ModelState.IsValid)
                 {
-                    carWash.IdLavado = id; // Ensure the ID remains the same
+                    carWash.IdCarWash = id; // Ensure the ID remains the same
 
                     carWash.CalculatePrices();
 
@@ -173,7 +173,7 @@ namespace dotnet_mvc_car_wash.Controllers
             CarWash carWash = null;
             foreach (var lav in carWashs)
             {
-                if (lav.IdLavado == id)
+                if (lav.IdCarWash == id)
                 {
                     carWash = lav;
                     break;
@@ -189,7 +189,7 @@ namespace dotnet_mvc_car_wash.Controllers
             {
                 for (int i = 0; i < carWashs.Count; i++)
                 {
-                    if (carWashs[i].IdLavado == updatedCarWash.IdLavado)
+                    if (carWashs[i].IdCarWash == updatedCarWash.IdCarWash)
                     {
                         updatedCarWash.FechaCreacion = carWashs[i].FechaCreacion;
                         carWashs[i] = updatedCarWash;
