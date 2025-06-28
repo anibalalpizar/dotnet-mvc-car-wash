@@ -7,7 +7,7 @@ namespace dotnet_mvc_car_wash.Models
     {
         [Required]
         [Display(Name = "Car Wash ID")]
-        public string IdLavado { get; set; }
+        public string IdCarWash { get; set; }
 
         [Required]
         [Display(Name = "Vehicle License Plate")]
