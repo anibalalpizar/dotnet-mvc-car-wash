@@ -6,13 +6,13 @@
 <h2>Editar Lavado</h2>
 <form asp-action="Edit">
     <div asp-validation-summary="ModelOnly"></div>
-    <input type="hidden" asp-for="IdLavado" />
+    <input type="hidden" asp-for="IdCarWash" />
     <input type="hidden" asp-for="FechaCreacion" />
 
     <div>
-        <label asp-for="IdLavado"></label>
-        <input asp-for="IdLavado" readonly />
-        <span asp-validation-for="IdLavado"></span>
+        <label asp-for="IdCarWash"></label>
+        <input asp-for="IdCarWash" readonly />
+        <span asp-validation-for="IdCarWash"></span>
     </div>
 
     <div>
@@ -105,7 +105,7 @@
     <div>
         <input type="submit" value="Guardar Cambios" />
         <a asp-action="Index">Volver a la lista</a> |
-        <a asp-action="Details" asp-route-id="@Model.IdLavado">Ver Detalles</a>
+        <a asp-action="Details" asp-route-id="@Model.IdCarWash">Ver Detalles</a>
     </div>
 </form>
 
