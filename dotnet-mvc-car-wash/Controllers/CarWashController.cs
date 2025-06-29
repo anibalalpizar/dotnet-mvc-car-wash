@@ -18,7 +18,7 @@ namespace dotnet_mvc_car_wash.Controllers
                 // Filter car wash based on search term
                 filteredLavados = carWashs.Where(l =>
                     l.IdCarWash.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) ||
-                    l.PlacaVehiculo.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) ||
+                    l.VehicleLicensePlate.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) ||
                     l.IdCliente.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) ||
                     l.IdEmpleado.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) ||
                     l.TipoLavado.ToString().Contains(searchTerm, StringComparison.OrdinalIgnoreCase) ||

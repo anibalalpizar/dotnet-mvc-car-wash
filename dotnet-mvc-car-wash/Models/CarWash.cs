@@ -11,7 +11,7 @@ namespace dotnet_mvc_car_wash.Models
 
         [Required]
         [Display(Name = "Vehicle License Plate")]
-        public string PlacaVehiculo { get; set; }
+        public string VehicleLicensePlate { get; set; }
 
         [Required]
         [Display(Name = "Client ID")]

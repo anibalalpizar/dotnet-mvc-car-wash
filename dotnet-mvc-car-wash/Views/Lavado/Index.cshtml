@@ -27,7 +27,7 @@
 <table>
     <thead>
         <tr>
-            <th>@Html.DisplayNameFor(model => model.FirstOrDefault().PlacaVehiculo)</th>
+            <th>@Html.DisplayNameFor(model => model.FirstOrDefault().VehicleLicensePlate)</th>
             <th>@Html.DisplayNameFor(model => model.FirstOrDefault().TipoLavado)</th>
             <th>@Html.DisplayNameFor(model => model.FirstOrDefault().PrecioBase)</th>
             <th>@Html.DisplayNameFor(model => model.FirstOrDefault().IVA)</th>
@@ -42,7 +42,7 @@
             @foreach (var item in Model)
             {
                 <tr>
-                    <td>@Html.DisplayFor(modelItem => item.PlacaVehiculo)</td>
+                    <td>@Html.DisplayFor(modelItem => item.VehicleLicensePlate)</td>
                     <td>@Html.DisplayFor(modelItem => item.TipoLavado)</td>
                     <td>₡@item.PrecioBase.ToString("N0")</td>
                     <td>₡@item.IVA.ToString("N0")</td>
