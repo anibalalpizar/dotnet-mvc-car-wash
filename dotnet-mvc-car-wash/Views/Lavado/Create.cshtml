@@ -24,15 +24,15 @@
     </div>
 
     <div>
-        <label asp-for="IdCliente"></label>
-        <input asp-for="IdCliente" />
-        <span asp-validation-for="IdCliente"></span>
+        <label asp-for="IdClient"></label>
+        <input asp-for="IdClient" />
+        <span asp-validation-for="IdClient"></span>
     </div>
 
     <div>
-        <label asp-for="IdEmpleado"></label>
-        <input asp-for="IdEmpleado" />
-        <span asp-validation-for="IdEmpleado"></span>
+        <label asp-for="IdEmployee"></label>
+        <input asp-for="IdEmployee" />
+        <span asp-validation-for="IdEmployee"></span>
     </div>
 
     <div>
@@ -73,9 +73,9 @@
                 tempLavado.CalculatePrices();
                 <li>
                     <strong>@tipo:</strong>
-                    @if (tempLavado.PrecioBase > 0)
+                    @if (tempLavado.BasePrice > 0)
                     {
-                        <text>₡@tempLavado.PrecioBase.ToString("N0") - </text>
+                        <text>₡@tempLavado.BasePrice.ToString("N0") - </text>
                     }
                     else
                     {
