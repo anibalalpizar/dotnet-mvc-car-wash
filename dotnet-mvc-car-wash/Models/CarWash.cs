@@ -15,18 +15,18 @@ namespace dotnet_mvc_car_wash.Models
 
         [Required]
         [Display(Name = "Client ID")]
-        public string IdCliente { get; set; }
+        public string IdClient { get; set; }
 
         [Required]
         [Display(Name = "Employee ID")]
-        public string IdEmpleado { get; set; }
+        public string IdEmployee { get; set; }
 
         [Required]
         [Display(Name = "Wash Type")]
         public TipoLavado TipoLavado { get; set; }
 
         [Display(Name = "Base Price")]
-        public decimal PrecioBase { get; set; }
+        public decimal BasePrice { get; set; }
 
         [Display(Name = "Price to Agree")]
         public decimal? PrecioAConvenir { get; set; }
@@ -57,11 +57,11 @@ namespace dotnet_mvc_car_wash.Models
         {
             if (TipoLavado == TipoLavado.LaJoya)
             {
-                PrecioBase = PrecioAConvenir ?? 0m;
+                BasePrice = PrecioAConvenir ?? 0m;
             }
             else
             {
-                PrecioBase = TipoLavado switch
+                BasePrice = TipoLavado switch
                 {
                     TipoLavado.Basico => 8000m,
                     TipoLavado.Premium => 12000m,
@@ -70,8 +70,8 @@ namespace dotnet_mvc_car_wash.Models
                 };
             }
 
-            IVA = PrecioBase * 0.13m;
-            PrecioTotal = PrecioBase + IVA;
+            IVA = BasePrice * 0.13m;
+            PrecioTotal = BasePrice + IVA;
         }
 
         public string GetTipoLavadoDescripcion()
