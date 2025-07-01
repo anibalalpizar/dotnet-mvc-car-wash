@@ -19,11 +19,11 @@ namespace dotnet_mvc_car_wash.Controllers
                 filteredLavados = carWashs.Where(l =>
                     l.IdCarWash.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) ||
                     l.VehicleLicensePlate.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) ||
-                    l.IdCliente.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) ||
-                    l.IdEmpleado.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) ||
+                    l.IdClient.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) ||
+                    l.IdEmployee.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) ||
                     l.TipoLavado.ToString().Contains(searchTerm, StringComparison.OrdinalIgnoreCase) ||
                     l.EstadoLavado.ToString().Contains(searchTerm, StringComparison.OrdinalIgnoreCase) ||
-                    l.PrecioBase.ToString().Contains(searchTerm) ||
+                    l.BasePrice.ToString().Contains(searchTerm) ||
                     l.PrecioTotal.ToString().Contains(searchTerm) ||
                     l.FechaCreacion.ToString("dd/MM/yyyy").Contains(searchTerm) ||
                     (l.Observaciones?.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) ?? false)
