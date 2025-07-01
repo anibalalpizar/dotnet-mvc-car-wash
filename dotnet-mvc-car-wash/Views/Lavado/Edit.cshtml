@@ -22,15 +22,15 @@
     </div>
 
     <div>
-        <label asp-for="IdCliente"></label>
-        <input asp-for="IdCliente" />
-        <span asp-validation-for="IdCliente"></span>
+        <label asp-for="IdClient"></label>
+        <input asp-for="IdClient" />
+        <span asp-validation-for="IdClient"></span>
     </div>
 
     <div>
-        <label asp-for="IdEmpleado"></label>
-        <input asp-for="IdEmpleado" />
-        <span asp-validation-for="IdEmpleado"></span>
+        <label asp-for="IdEmployee"></label>
+        <input asp-for="IdEmployee" />
+        <span asp-validation-for="IdEmployee"></span>
     </div>
 
     <div>
@@ -67,11 +67,11 @@
         <span>@Model.FechaCreacion.ToString("dd/MM/yyyy HH:mm")</span>
     </div>
 
-    @if (Model.PrecioBase > 0)
+    @if (Model.BasePrice > 0)
     {
         <div>
             <h4>Información de Precios Actuales:</h4>
-            <p><strong>Precio Base:</strong> ₡@Model.PrecioBase.ToString("N0")</p>
+            <p><strong>Precio Base:</strong> ₡@Model.BasePrice.ToString("N0")</p>
             <p><strong>IVA (13%):</strong> ₡@Model.IVA.ToString("N0")</p>
             <p><strong>Precio Total:</strong> ₡@Model.PrecioTotal.ToString("N0")</p>
             <p><em>Los precios se recalcularán automáticamente si cambia el tipo de lavado</em></p>
@@ -87,9 +87,9 @@
                 tempLavado.CalculatePrices();
                 <li>
                     <strong>@tipo:</strong>
-                    @if (tempLavado.PrecioBase > 0)
+                    @if (tempLavado.BasePrice > 0)
                     {
-                        <text>₡@tempLavado.PrecioBase.ToString("N0") - </text>
+                        <text>₡@tempLavado.BasePrice.ToString("N0") - </text>
                     }
                     else
                     {
