@@ -23,7 +23,7 @@ namespace dotnet_mvc_car_wash.Models
 
         [Required]
         [Display(Name = "Wash Type")]
-        public TipoLavado TipoLavado { get; set; }
+        public WashType WashType { get; set; }
 
         [Display(Name = "Base Price")]
         public decimal BasePrice { get; set; }
@@ -55,17 +55,17 @@ namespace dotnet_mvc_car_wash.Models
 
         public void CalculatePrices()
         {
-            if (TipoLavado == TipoLavado.LaJoya)
+            if (WashType == WashType.LaJoya)
             {
                 BasePrice = PrecioAConvenir ?? 0m;
             }
             else
             {
-                BasePrice = TipoLavado switch
+                BasePrice = WashType switch
                 {
-                    TipoLavado.Basico => 8000m,
-                    TipoLavado.Premium => 12000m,
-                    TipoLavado.Deluxe => 20000m,
+                    WashType.Basico => 8000m,
+                    WashType.Premium => 12000m,
+                    WashType.Deluxe => 20000m,
                     _ => 0m
                 };
             }
@@ -76,12 +76,12 @@ namespace dotnet_mvc_car_wash.Models
 
         public string GetTipoLavadoDescripcion()
         {
-            return TipoLavado switch
+            return WashType switch
             {
-                TipoLavado.Basico => "Lavado, aspirado y encerado",
-                TipoLavado.Premium => "Lavado, aspirado y encerado y limpieza profunda de asientos",
-                TipoLavado.Deluxe => "Lavado, aspirado y encerado, limpieza profunda de asientos, corrección de pintura. Opción productos para lavado con tratamiento nanocerámico",
-                TipoLavado.LaJoya => "Incluye todo más detalles a convenir, pulidos, tratamientos hidrofóbicos, entre otros",
+                WashType.Basico => "Lavado, aspirado y encerado",
+                WashType.Premium => "Lavado, aspirado y encerado y limpieza profunda de asientos",
+                WashType.Deluxe => "Lavado, aspirado y encerado, limpieza profunda de asientos, corrección de pintura. Opción productos para lavado con tratamiento nanocerámico",
+                WashType.LaJoya => "Incluye todo más detalles a convenir, pulidos, tratamientos hidrofóbicos, entre otros",
                 _ => "Descripción no disponible"
             };
         }
