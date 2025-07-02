@@ -34,11 +34,11 @@
     </div>
 
     <div>
-        <label asp-for="TipoLavado"></label>
-        <select asp-for="TipoLavado" asp-items="Html.GetEnumSelectList<TipoLavado>()" id="tipoLavadoSelect">
+        <label asp-for="WashType"></label>
+        <select asp-for="WashType" asp-items="Html.GetEnumSelectList<WashType>()" id="tipoLavadoSelect">
             <option value="">-- Seleccione un tipo --</option>
         </select>
-        <span asp-validation-for="TipoLavado"></span>
+        <span asp-validation-for="WashType"></span>
     </div>
 
     <div id="precioAConvenirDiv" style="display: none;">
@@ -81,9 +81,9 @@
     <div>
         <p><strong>Precios por tipo de lavado:</strong></p>
         <ul>
-            @foreach (var tipo in Enum.GetValues<TipoLavado>())
+            @foreach (var tipo in Enum.GetValues<WashType>())
             {
-                var tempLavado = new dotnet_mvc_car_wash.Models.CarWash { TipoLavado = tipo };
+                var tempLavado = new dotnet_mvc_car_wash.Models.CarWash { WashType = tipo };
                 tempLavado.CalculatePrices();
                 <li>
                     <strong>@tipo:</strong>

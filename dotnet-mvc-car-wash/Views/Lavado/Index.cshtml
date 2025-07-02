@@ -28,7 +28,7 @@
     <thead>
         <tr>
             <th>@Html.DisplayNameFor(model => model.FirstOrDefault().VehicleLicensePlate)</th>
-            <th>@Html.DisplayNameFor(model => model.FirstOrDefault().TipoLavado)</th>
+            <th>@Html.DisplayNameFor(model => model.FirstOrDefault().WashType)</th>
             <th>@Html.DisplayNameFor(model => model.FirstOrDefault().BasePrice)</th>
             <th>@Html.DisplayNameFor(model => model.FirstOrDefault().IVA)</th>
             <th>@Html.DisplayNameFor(model => model.FirstOrDefault().PrecioTotal)</th>
@@ -43,7 +43,7 @@
             {
                 <tr>
                     <td>@Html.DisplayFor(modelItem => item.VehicleLicensePlate)</td>
-                    <td>@Html.DisplayFor(modelItem => item.TipoLavado)</td>
+                    <td>@Html.DisplayFor(modelItem => item.WashType)</td>
                     <td>₡@item.BasePrice.ToString("N0")</td>
                     <td>₡@item.IVA.ToString("N0")</td>
                     <td>₡@item.PrecioTotal.ToString("N0")</td>
