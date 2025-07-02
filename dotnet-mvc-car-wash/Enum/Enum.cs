@@ -2,7 +2,7 @@
 
 namespace dotnet_mvc_car_wash.Models.Enums
 {
-    public enum TipoLavado
+    public enum WashType
     {
         [Display(Name = "Básico")]
         Basico,
@@ -18,18 +18,6 @@ namespace dotnet_mvc_car_wash.Models.Enums
         EnProceso,
         Facturado,
         Agendado
-    }
-
-    public enum WashType
-    {
-        [Display(Name = "Basic")]
-        Basic = 8000,
-        [Display(Name = "Premium")]
-        Premium = 12000,
-        [Display(Name = "Deluxe")]
-        Deluxe = 20000,
-        [Display(Name = "La Joya")]
-        LaJoya = 0
     }
 
     public enum WashStatus
