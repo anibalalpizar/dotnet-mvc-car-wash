@@ -21,7 +21,7 @@ namespace dotnet_mvc_car_wash.Controllers
                     l.VehicleLicensePlate.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) ||
                     l.IdClient.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) ||
                     l.IdEmployee.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) ||
-                    l.TipoLavado.ToString().Contains(searchTerm, StringComparison.OrdinalIgnoreCase) ||
+                    l.WashType.ToString().Contains(searchTerm, StringComparison.OrdinalIgnoreCase) ||
                     l.EstadoLavado.ToString().Contains(searchTerm, StringComparison.OrdinalIgnoreCase) ||
                     l.BasePrice.ToString().Contains(searchTerm) ||
                     l.PrecioTotal.ToString().Contains(searchTerm) ||
@@ -61,7 +61,7 @@ namespace dotnet_mvc_car_wash.Controllers
         {
             try
             {
-                if (carWash.TipoLavado == TipoLavado.LaJoya && (!carWash.PrecioAConvenir.HasValue || carWash.PrecioAConvenir <= 0))
+                if (carWash.WashType == WashType.LaJoya && (!carWash.PrecioAConvenir.HasValue || carWash.PrecioAConvenir <= 0))
                 {
                     ModelState.AddModelError("PrecioAConvenir", "You must specify a price for the 'La Joya' wash.");
                 }
@@ -112,7 +112,7 @@ namespace dotnet_mvc_car_wash.Controllers
         {
             try
             {
-                if (carWash.TipoLavado == TipoLavado.LaJoya && (!carWash.PrecioAConvenir.HasValue || carWash.PrecioAConvenir <= 0))
+                if (carWash.WashType == WashType.LaJoya && (!carWash.PrecioAConvenir.HasValue || carWash.PrecioAConvenir <= 0))
                 {
                     ModelState.AddModelError("PrecioAConvenir", "You must specify a price for the 'La Joya' wash.");
                 }
