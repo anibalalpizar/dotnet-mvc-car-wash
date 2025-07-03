@@ -24,9 +24,9 @@ namespace dotnet_mvc_car_wash.Controllers
                     l.WashType.ToString().Contains(searchTerm, StringComparison.OrdinalIgnoreCase) ||
                     l.EstadoLavado.ToString().Contains(searchTerm, StringComparison.OrdinalIgnoreCase) ||
                     l.BasePrice.ToString().Contains(searchTerm) ||
-                    l.PrecioTotal.ToString().Contains(searchTerm) ||
-                    l.FechaCreacion.ToString("dd/MM/yyyy").Contains(searchTerm) ||
-                    (l.Observaciones?.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) ?? false)
+                    l.TotalPrice.ToString().Contains(searchTerm) ||
+                    l.CreationDate.ToString("dd/MM/yyyy").Contains(searchTerm) ||
+                    (l.Observations?.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) ?? false)
                 ).ToList();
             }
 
@@ -61,9 +61,9 @@ namespace dotnet_mvc_car_wash.Controllers
         {
             try
             {
-                if (carWash.WashType == WashType.LaJoya && (!carWash.PrecioAConvenir.HasValue || carWash.PrecioAConvenir <= 0))
+                if (carWash.WashType == WashType.LaJoya && (!carWash.PricetoAgree.HasValue || carWash.PricetoAgree <= 0))
                 {
-                    ModelState.AddModelError("PrecioAConvenir", "You must specify a price for the 'La Joya' wash.");
+                    ModelState.AddModelError("Price to Agree", "You must specify a price for the 'La Joya' wash.");
                 }
 
                 if (ModelState.IsValid)
@@ -73,9 +73,9 @@ namespace dotnet_mvc_car_wash.Controllers
                     {
                         carWash.CalculatePrices();
 
-                        if (carWash.FechaCreacion == default(DateTime))
+                        if (carWash.CreationDate == default(DateTime))
                         {
-                            carWash.FechaCreacion = DateTime.Now;
+                            carWash.CreationDate = DateTime.Now;
                         }
 
                         carWashs.Add(carWash);
@@ -112,7 +112,7 @@ namespace dotnet_mvc_car_wash.Controllers
         {
             try
             {
-                if (carWash.WashType == WashType.LaJoya && (!carWash.PrecioAConvenir.HasValue || carWash.PrecioAConvenir <= 0))
+                if (carWash.WashType == WashType.LaJoya && (!carWash.PricetoAgree.HasValue || carWash.PricetoAgree <= 0))
                 {
                     ModelState.AddModelError("PrecioAConvenir", "You must specify a price for the 'La Joya' wash.");
                 }
@@ -191,7 +191,7 @@ namespace dotnet_mvc_car_wash.Controllers
                 {
                     if (carWashs[i].IdCarWash == updatedCarWash.IdCarWash)
                     {
-                        updatedCarWash.FechaCreacion = carWashs[i].FechaCreacion;
+                        updatedCarWash.CreationDate = carWashs[i].CreationDate;
                         carWashs[i] = updatedCarWash;
                         success = true;
                         break;
