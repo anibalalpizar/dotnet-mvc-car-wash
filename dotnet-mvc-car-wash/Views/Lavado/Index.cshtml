@@ -31,7 +31,7 @@
             <th>@Html.DisplayNameFor(model => model.FirstOrDefault().WashType)</th>
             <th>@Html.DisplayNameFor(model => model.FirstOrDefault().BasePrice)</th>
             <th>@Html.DisplayNameFor(model => model.FirstOrDefault().IVA)</th>
-            <th>@Html.DisplayNameFor(model => model.FirstOrDefault().PrecioTotal)</th>
+            <th>@Html.DisplayNameFor(model => model.FirstOrDefault().TotalPrice)</th>
             <th>@Html.DisplayNameFor(model => model.FirstOrDefault().EstadoLavado)</th>
             <th>Acciones</th>
         </tr>
@@ -46,7 +46,7 @@
                     <td>@Html.DisplayFor(modelItem => item.WashType)</td>
                     <td>₡@item.BasePrice.ToString("N0")</td>
                     <td>₡@item.IVA.ToString("N0")</td>
-                    <td>₡@item.PrecioTotal.ToString("N0")</td>
+                    <td>₡@item.TotalPrice.ToString("N0")</td>
                     <td>@Html.DisplayFor(modelItem => item.EstadoLavado)</td>
                     <td>
                         <a asp-action="Edit" asp-route-id="@item.IdCarWash">Editar</a> |
