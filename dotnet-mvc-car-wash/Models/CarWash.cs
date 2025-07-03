@@ -29,27 +29,27 @@ namespace dotnet_mvc_car_wash.Models
         public decimal BasePrice { get; set; }
 
         [Display(Name = "Price to Agree")]
-        public decimal? PrecioAConvenir { get; set; }
+        public decimal? PricetoAgree { get; set; }
 
         [Display(Name = "IVA (13%)")]
         public decimal IVA { get; set; }
 
         [Display(Name = "Total Price")]
-        public decimal PrecioTotal { get; set; }
+        public decimal TotalPrice { get; set; }
 
         [Required]
         [Display(Name = "Wash Status")]
         public EstadoLavado EstadoLavado { get; set; }
 
         [Display(Name = "Creation Date")]
-        public DateTime FechaCreacion { get; set; }
+        public DateTime CreationDate { get; set; }
 
         [Display(Name = "Observations")]
-        public string? Observaciones { get; set; }
+        public string? Observations { get; set; }
 
         public CarWash()
         {
-            FechaCreacion = DateTime.Now;
+            CreationDate = DateTime.Now;
             EstadoLavado = EstadoLavado.Agendado;
         }
 
@@ -57,7 +57,7 @@ namespace dotnet_mvc_car_wash.Models
         {
             if (WashType == WashType.LaJoya)
             {
-                BasePrice = PrecioAConvenir ?? 0m;
+                BasePrice = PricetoAgree ?? 0m;
             }
             else
             {
@@ -71,7 +71,7 @@ namespace dotnet_mvc_car_wash.Models
             }
 
             IVA = BasePrice * 0.13m;
-            PrecioTotal = BasePrice + IVA;
+            TotalPrice = BasePrice + IVA;
         }
 
         public string GetTipoLavadoDescripcion()
