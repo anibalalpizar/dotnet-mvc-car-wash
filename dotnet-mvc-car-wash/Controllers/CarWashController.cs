@@ -22,7 +22,7 @@ namespace dotnet_mvc_car_wash.Controllers
                     l.IdClient.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) ||
                     l.IdEmployee.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) ||
                     l.WashType.ToString().Contains(searchTerm, StringComparison.OrdinalIgnoreCase) ||
-                    l.EstadoLavado.ToString().Contains(searchTerm, StringComparison.OrdinalIgnoreCase) ||
+                    l.WashStatus.ToString().Contains(searchTerm, StringComparison.OrdinalIgnoreCase) ||
                     l.BasePrice.ToString().Contains(searchTerm) ||
                     l.TotalPrice.ToString().Contains(searchTerm) ||
                     l.CreationDate.ToString("dd/MM/yyyy").Contains(searchTerm) ||
