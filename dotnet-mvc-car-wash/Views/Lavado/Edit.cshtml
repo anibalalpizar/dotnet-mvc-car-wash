@@ -49,11 +49,11 @@
     </div>
 
     <div>
-        <label asp-for="EstadoLavado"></label>
-        <select asp-for="EstadoLavado" asp-items="Html.GetEnumSelectList<EstadoLavado>()">
+        <label asp-for="WashStatus"></label>
+        <select asp-for="WashStatus" asp-items="Html.GetEnumSelectList<WashStatus>()">
             <option value="">-- Seleccione un estado --</option>
         </select>
-        <span asp-validation-for="EstadoLavado"></span>
+        <span asp-validation-for="WashStatus"></span>
     </div>
 
     <div>
