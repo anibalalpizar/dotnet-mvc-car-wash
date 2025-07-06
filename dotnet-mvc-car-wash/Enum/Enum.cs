@@ -12,21 +12,11 @@ namespace dotnet_mvc_car_wash.Models.Enums
         LaJoya
     }
 
-    public enum EstadoLavado
-    {
-        [Display(Name = "En Proceso")]
-        EnProceso,
-        Facturado,
-        Agendado
-    }
-
     public enum WashStatus
     {
         [Display(Name = "In Process")]
-        InProcess,
-        [Display(Name = "Billed")]
+        InProgress,
         Billed,
-        [Display(Name = "Scheduled")]
         Scheduled
     }
 
