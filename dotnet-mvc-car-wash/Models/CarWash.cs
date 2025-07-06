@@ -39,7 +39,7 @@ namespace dotnet_mvc_car_wash.Models
 
         [Required]
         [Display(Name = "Wash Status")]
-        public EstadoLavado EstadoLavado { get; set; }
+        public WashStatus WashStatus { get; set; }
 
         [Display(Name = "Creation Date")]
         public DateTime CreationDate { get; set; }
@@ -50,7 +50,7 @@ namespace dotnet_mvc_car_wash.Models
         public CarWash()
         {
             CreationDate = DateTime.Now;
-            EstadoLavado = EstadoLavado.Agendado;
+            WashStatus = WashStatus.Scheduled;
         }
 
         public void CalculatePrices()
