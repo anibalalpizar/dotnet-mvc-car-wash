@@ -63,7 +63,7 @@ namespace dotnet_mvc_car_wash.Models
             {
                 BasePrice = WashType switch
                 {
-                    WashType.Basico => 8000m,
+                    WashType.Basic => 8000m,
                     WashType.Premium => 12000m,
                     WashType.Deluxe => 20000m,
                     _ => 0m
@@ -78,11 +78,11 @@ namespace dotnet_mvc_car_wash.Models
         {
             return WashType switch
             {
-                WashType.Basico => "Lavado, aspirado y encerado",
-                WashType.Premium => "Lavado, aspirado y encerado y limpieza profunda de asientos",
-                WashType.Deluxe => "Lavado, aspirado y encerado, limpieza profunda de asientos, corrección de pintura. Opción productos para lavado con tratamiento nanocerámico",
-                WashType.LaJoya => "Incluye todo más detalles a convenir, pulidos, tratamientos hidrofóbicos, entre otros",
-                _ => "Descripción no disponible"
+                WashType.Basic => "Washing, vacuuming y waxing",
+                WashType.Premium => "Washing, vacuuming, waxing and deep cleaning of seats",
+                WashType.Deluxe => "Washing, vacuuming, and waxing, deep seat cleaning, and paint correction. Optional nanoceramic-treated car wash products.",
+                WashType.LaJoya => "Includes all the details to be agreed upon, polishing, hydrophobic treatments, among others.",
+                _ => "Description not available"
             };
         }
     }
